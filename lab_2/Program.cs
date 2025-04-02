@@ -6,7 +6,7 @@ namespace lab2
     {
         static void Main(string[] args)
         {
-            string t = Word("hello world");
+            string t = Word(" b c");
             Console.WriteLine(t);
         }
         public static string Word(string input)
