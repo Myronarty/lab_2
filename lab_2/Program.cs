@@ -2,19 +2,25 @@
 
 namespace lab2
 {
-    internal class Program
+    public class Woorrrddddssssss
     {
         static void Main(string[] args)
         {
-            string input = Console.ReadLine();
+            string t = Word("hello world");
+            Console.WriteLine(t);
+        }
+        public static string Word(string input)
+        {
             int a = input.Length;
+            string output = "";
             for (int i = 0; i < a; i++)
             {
-                for (int j = 0; j <= i; j++)
+                for (int j = i*(i+1)/2; j <= i + i * (i + 1) / 2; j++)  //не знаю наскільки тут оптимально брати суму, але працює
                 {
-                    Console.Write(input[i]);
+                    output = output.Insert(j, input[i].ToString());
                 }
             }
+            return output;
         }
     }
 }
