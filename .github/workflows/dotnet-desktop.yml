@@ -1,0 +1,32 @@
+name: C++ CI/CD Pipeline
+
+on: [push, pull_request]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: checkout code
+        uses: actions/checkout@v3
+
+      - name: build Source.cpp
+        run: clang++ -std=c++11 -c lab_2/Program.cs -o Program.o
+      
+      - name: build test.cpp
+        run: clang++ -std=c++11 -c lab_2/UnitTest1.cs -o UnitTest1.o 
+      
+      - name: link
+        run: clang++ Source.o test.o -o test  
+
+      - name: Test directory
+        run: mkdir -p results
+
+      - name: run tests
+        run: ./UnitTest1
+        
+      - name: Test artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: results
+          path: test.txt# This workflow uses actions that are not certified by GitHub.
