@@ -1,4 +1,4 @@
-name: C++ CI/CD Pipeline
+name: C# CI/CD Pipeline
 
 on: [push, pull_request]
 
@@ -14,7 +14,7 @@ jobs:
         run: clang++ -std=c++11 -c lab_2/Program.cs -o Program.o
       
       - name: build UnitTest1.cpp
-        run: clang++ -std=c++11 -c lab_2/UnitTest1.cs -o UnitTest1.o 
+        run: clang++ -std=c++11 -c TestLab2/UnitTest1.cs -o UnitTest1.o 
       
       - name: link
         run: clang++ Program.o UnitTest1.o -o test  
