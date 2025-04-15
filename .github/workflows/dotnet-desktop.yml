@@ -10,10 +10,10 @@ jobs:
       - name: checkout code
         uses: actions/checkout@v3
 
-      - name: build Program.cpp
+      - name: build Program.cs
         run: clang++ -std=c++11 -c lab_2/Program.cs -o Program.o
       
-      - name: build UnitTest1.cpp
+      - name: build UnitTest1.cs
         run: clang++ -std=c++11 -c TestLab2/UnitTest1.cs -o UnitTest1.o 
       
       - name: link
