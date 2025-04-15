@@ -7,26 +7,26 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: checkout code
+      - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: build Program.cs
-        run: clang++ -std=c++11 -c lab_2/Program.cs -o Program.o
-      
-      - name: build UnitTest1.cs
-        run: clang++ -std=c++11 -c TestLab2/UnitTest1.cs -o UnitTest1.o 
-      
-      - name: link
-        run: clang++ Program.o UnitTest1.o -o test  
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '8.0.x'
 
-      - name: Test directory
-        run: mkdir -p results
+      - name: Restore dependencies
+        run: dotnet restore
 
-      - name: run tests
-        run: ./UnitTest1
-        
-      - name: Test artifact
+      - name: Build
+        run: dotnet build --no-restore
+
+      - name: Run tests
+        run: dotnet test --logger "trx;LogFileName=test_results.trx" --results-directory results
+
+      - name: Upload test results
         uses: actions/upload-artifact@v4
         with:
-          name: results
-          path: test.txt# This workflow uses actions that are not certified by GitHub.
+          name: test-results
+          path: results
+
