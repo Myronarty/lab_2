@@ -4,31 +4,20 @@ namespace lab2
 {
     public class Woorrrddddssssss
     {
-        static void Main(string[] args)
-        {
-            var t = args[0];
-
-            if (t.StartsWith("Error"))
-            {
-                Environment.Exit(1);
-            }
-            else
-            {
-                Console.WriteLine(Word(t));
-                Environment.Exit(0);
-            }
-        }
-
-        public static string FromArgs(string[] args)
+        public static int Main(string[] args)
         {
             if (args.Length == 0)
             {
                 Console.Error.WriteLine("No args?");
-                return null;
+                return 1;
             }
 
-            return Word(args[0]);
+            var t = args[0];
+            Console.WriteLine(Word(t));
+            return 0;
         }
+
+
 
         public static string Word(string input)
         {

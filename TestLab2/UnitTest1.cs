@@ -22,7 +22,7 @@ namespace TestLab2
         public void TestArgsInput()
         {
             string[] args = { "echo" };
-            var result = Woorrrddddssssss.FromArgs(args);
+            var result = Woorrrddddssssss.Word(args[0]);
             Assert.That(result, Is.EqualTo("ecchhhoooo"));
         }
 
@@ -33,13 +33,12 @@ namespace TestLab2
             Console.SetOut(sw);
 
             string[] args = { "echo" };
-            var result = Woorrrddddssssss.FromArgs(args);
-
-            Console.WriteLine(result);
+            var result = Woorrrddddssssss.Main(args);
 
             string stdoutOutput = sw.ToString().Trim();
 
             Assert.That(stdoutOutput, Is.EqualTo("ecchhhoooo"));
+            Assert.That(result, Is.EqualTo(0));
         }
 
         [Test]
@@ -49,30 +48,21 @@ namespace TestLab2
             Console.SetError(sw);
 
             string[] args = { };
-            var result = Woorrrddddssssss.FromArgs(args);
+            var result = Woorrrddddssssss.Main(args);
 
             string stderrOutput = sw.ToString().Trim();
 
             Assert.That(stderrOutput, Is.EqualTo("No args?"));
-            Assert.That(result, Is.EqualTo(null));
+            Assert.That(result, Is.EqualTo(1));
         }
 
         [Test]
         public void TestErrorExitCode()
         {
             string[] args = { };
-            var result = Woorrrddddssssss.FromArgs(args);
+            var result = Woorrrddddssssss.Main(args);
 
-            if (result != null)
-            {
-                Environment.ExitCode = 0;
-            }
-            else
-            {
-                Environment.ExitCode = 1;
-            }
-
-            Assert.That(Environment.ExitCode, Is.EqualTo(1));
+            Assert.That(result, Is.EqualTo(1));
         }
 
     }
