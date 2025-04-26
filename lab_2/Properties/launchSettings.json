@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "lab_2": {
+      "commandName": "Project",
+      "commandLineArgs": "echo"
+    }
+  }
+}

@@ -6,9 +6,30 @@ namespace lab2
     {
         static void Main(string[] args)
         {
-            string t = Word(" b c");
-            Console.WriteLine(t);
+            var t = args[0];
+
+            if (t.StartsWith("Error"))
+            {
+                Environment.Exit(1);
+            }
+            else
+            {
+                Console.WriteLine(Word(t));
+                Environment.Exit(0);
+            }
         }
+
+        public static string FromArgs(string[] args)
+        {
+            if (args.Length == 0)
+            {
+                Console.Error.WriteLine("No args?");
+                return null;
+            }
+
+            return Word(args[0]);
+        }
+
         public static string Word(string input)
         {
             int a = input.Length;
